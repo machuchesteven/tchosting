@@ -7,7 +7,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#search-button{
+  text-decoration: none;
+}
+
+
+.footer{
+  position: fixed;
+  bottom: opx;
+  align-items: flex;
+
 }

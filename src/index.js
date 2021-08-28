@@ -1,17 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import { Form, Button } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const App = () => {
+  const [domainName, setDomainName] = useState("")
+  const [submitted, setSubmitted] = useState(false)
+  function handleNameChange(e) {
+    e.preventDefault()
+    setDomainName(e.target.value)
+  }
+  function handleSubmit(e) {
+    e.preventDefault()
+    console.log(domainName)
+    setSubmitted(true)
+  }
+  return <div>
+    <Form.Control type="text" placeholder="Domain Name" onChange={(e) => { handleNameChange(e) }} />
+    <Button onClick={e => { handleSubmit(e) }} variant="outline-primary">Submit</Button>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+    <div>{submitted ? "The Value is Submitted" : ""}</div>
+  </div>
+}
+
+
+ReactDOM.render(<div>
+  <App />
+</div>, document.getElementById('root'))
