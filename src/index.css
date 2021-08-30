@@ -10,11 +10,74 @@ body {
 #search-button{
   text-decoration: none;
 }
-
+#site-greetings{
+  text-align: center;
+}
+#empty{
+  height: 1rem;
+}
+#domain-input{
+  text-align: center;
+  justify-content: center;
+}
+#domain-input::placeholder{
+  justify-content: center;
+  text-align: center;
+}
+#services-heading{
+  text-align: center;
+}
 
 .footer{
   position: fixed;
   bottom: opx;
   align-items: flex;
 
+}
+.hosting-services-container{
+  width: 85%;
+  margin: auto;
+}
+.hosting-service-overlay-image{
+  display: none;
+}
+.hosting-services-col{
+  columns: 50% 2;
+  justify-content: center;
+  width: 45%;
+  margin: auto 0.2rem;
+  border: 0.5px blueviolet solid;
+  border-radius: 4px;
+}
+.hosting-service-heading{
+  justify-content: center;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+.hosting-service-content{
+  margin: auto;
+
+  background-color: #ffffff;
+
+
+}
+.see-more-button{
+  font-weight: bold;
+  font-size: 1em;
+  width: 60%;
+  justify-content: center;
+  padding: auto 0.125rem;
+  background-color: blueviolet;
+  border-color: #000000;
+}
+.see-more-button :hover{
+  font-weight: bold;
+  color: blueviolet;
+  width: 60%;
+  justify-content: center;
+  padding: auto 0.125rem;
+  background-color: white;
+  opacity: 0.7;
+  border-color: blueviolet;
+  
 }
