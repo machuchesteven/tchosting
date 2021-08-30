@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { Form, Button, Row, Col, Container, Navbar as BNavbar, Nav } from 'react-bootstrap'
+import { Alert, Form, Button, Row, Col, Container, Navbar as BNavbar, Nav, Card } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-// import {Bounce, LightSpeed} from 'react-reveal'
+import {Bounce, LightSpeed, Fade, Slide, Flip} from 'react-reveal'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faSpinner, faArrowDown, faSearch, } from "@fortawesome/free-solid-svg-icons"
+import {faGem, faLightbulb} from "@fortawesome/free-regular-svg-icons"
+import {faGithub, faFacebook, faInstagram, faLinkedin} from "@fortawesome/free-brands-svg-icons"
+
+
 
 
 // the navigation bar for the application
@@ -15,7 +21,7 @@ const Navigation = () => {
   }
   return (
     <div>
-      <BNavbar bg="light" stick="top" expand="md">
+      <BNavbar  sticky="top" bg="light" expand="md" className="h-100">
         <Container>
           <div><BNavbar.Brand><b id="brand-name">TechCraftHost</b></BNavbar.Brand></div>
           <Nav className="justify-content-center" activeKey="/" id="navigation">
@@ -54,14 +60,14 @@ const CallToBuy = (props) => {
 const Greetings = () => {
   return <div >
     <Container className="justify-content-center">
-      {/* <Bounce top> */}
+     <Bounce top>
       <h1 className="display-5 fw-bold" id="site-greetings">
         Get Your Business, Brand, or Office Domain<br />
         And Scale Up Your Business With<br />
         Us. It's Just A Single Click
-        {/* <FontAwesomeIcon icon={faArrowDown} id="arrow-down" /> */}
+        <FontAwesomeIcon icon={faArrowDown} id="arrow-down" />
       </h1>
-      {/* </Bounce> */}
+      </Bounce>
     </Container>
   </div>
 }
@@ -89,6 +95,7 @@ const App = () => {
   function handleNameChange(e) {
     e.preventDefault()
     setSubmitted(false)
+    setCheckResult("")
     setDomainName((e.target.value).toLowerCase())
   }
   // checking for user's need to search for a particular domain
@@ -98,12 +105,34 @@ const App = () => {
     setSubmitted(true)
   }
   function Buy() {
-    if (submitted) {
+    const [askSuggestion, setAskSuggestions] = useState(false)
+    function suggest(){
+      const lastIndex = domainName.lastIndexOf(".")
+      const rootName = domainName.slice(0, lastIndex)
+      return `${rootName}.co.tz`
+    }
+    if (submitted && checkResult === "AVAILABLE") {
       return <div>
+      <Bounce>
         <CallToBuy name={domainName} discount={20} />
+      </Bounce>
       </div>
-    } else {
-      return <div>We will help you get your domain at every cost</div>
+    } if(submitted && checkResult === "UNAVAILABLE"){
+      return <div>
+      <Alert variant="success">
+      <Bounce>
+      
+        <h1>The domain is not available, But there are other suggestions</h1>
+        <Button variant="primary" onClick={(e)=> {setAskSuggestions(true)}}><FontAwesomeIcon icon={faSearch} />Click here to get them</Button>
+      </Bounce>
+      </Alert>
+      <Container>
+      <div>{askSuggestion? `${suggest()}`: "Can You Try Another Good Name"}</div>
+      </Container>
+      </div>
+    }
+    else {
+      return <div><FontAwesomeIcon icon={faSpinner} spin size="4x" /></div>
     }
   }
   useEffect(() => {
@@ -134,9 +163,11 @@ const App = () => {
   function availableCheck(){
     if(isAvailable){
       return <div>
+      <LightSpeed bottom>
         <Container>
         <h1>The Domain You have Looked for is {checkResult}</h1>
         </Container>
+      </LightSpeed>
       </div>
     }else{
       return <div>
@@ -172,21 +203,82 @@ const App = () => {
 }
 
 // services div
-const Services = () => {
-  return <div id="services" className="bg-dark">
-    <Container>
-      <div id="services-heading-container">
-        <h2 className="fw-bold display-8" id="services-heading">
-          We offer More Services like :-
-        </h2>
-        <div id="services-cards-container">
-          Here goes the ervices cards and their rows
-        </div>
-      </div>
-    </Container>
-  </div>
-}
+// const Services = () => {
+//   return <div id="services" className="bg-dark">
+//     <Container>
+//       <div id="services-heading-container">
+//         <h2 className="fw-bold display-8" id="services-heading">
+//           We offer More Services like :-
+//         </h2>
+//         <div id="services-cards-container">
+//           Here goes the ervices cards and their rows
+//         </div>
+//       </div>
+//     </Container>
+//   </div>
+// }
+// const Services = () =>{
+//  return <div className="services-container"  id="services">
+//     <div className="services">
+//       <Fade left>
+//       {/* <FontAwesomeIcon icon={faSpinner} spin size="10x" style={{color: "blueviolet"}}/> */}
+//       <h2><Slide left>TechCraft Technologies </Slide><Slide right>Offers Other Services</Slide></h2>
+//       </Fade>
+//       <Container className="justify-content-center services" id="service-container">
+//       <Row xs={1} md={2} lg={2}>
+//       <Card className="justify-content-center col-md-5 shadow-sm mt-2 ml-2">
+//           <Card.Title>Software Development</Card.Title>
+//           <Card.Body><Card.Text>
+//           We provide services in design and development of mobile applications, 
+//           desktop applications, 
+//           web applications with focus on responsiveness and good SEO.
+//           </Card.Text></Card.Body>
+//         </Card>
+//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
+//           <Card.Title>ICT Infrastructure Support & Maintenance</Card.Title>
+//           <Card.Body><Card.Text>
+//           We provide wire and wireless networking solutions for residential and enterprise applications. We also provide support and maintenance services tailored tospecific ICT requirements.
+//           </Card.Text></Card.Body>
+//         </Card>        
+//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
+//           <Card.Title>Research</Card.Title>
+//           <Card.Body><Card.Text>
+//           We conduct applied research in various areas of information and communication technologies. We also develop data collection and entry systems for use in both qualitative and quantitative research in various fields.
+//           </Card.Text></Card.Body>
+//         </Card>        
+//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
+//           <Card.Title>Training</Card.Title>
+//           <Card.Body><Card.Text>
+//           We offer professional training in Mobile apps development, Desktop and Web apps development, IoT products & services development, Computer networking, Cyber security and Business Model Development for ICT products & services.
+//           </Card.Text></Card.Body>
+//         </Card>        
+//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
+//           <Card.Title>Artificial Intelligence</Card.Title>
+//           <Card.Body><Card.Text>
+//           We harnessing the power of data to accelerate change of your business by leveraging AI and analytics for business to unlock new efficiencies and increase productivity using enterprise-wide AI solutions that deliver game changing results.
+//           </Card.Text></Card.Body>
+//         </Card>        
+//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
+//           <Card.Title>Internet of Things (IoT)</Card.Title>
+//           <Card.Body><Card.Text>
+//           We provide strategic consulting, development, data analytics tools and application management using network of physical devices connected and exchanging data to solve business challenges and get new revenue streams via IoT technology.
+//           </Card.Text></Card.Body>
+//         </Card>  
+//         <div className=" col-md-3"></div> 
+//         <LightSpeed right>     
+//         <Card className="justify-content-center shadow-sm m-2">
+//           <Card.Title>ICT Consultancy</Card.Title>
+//           <Card.Body><Card.Text>
+//           We offer a range of consultancy services in ICT and provide security audit services.
+//           </Card.Text></Card.Body>
+//         </Card>
+//         </LightSpeed>
+//       </Row>
+//       </Container>
+//       </div>
+//       </div>
 
+// }
 
 
 
@@ -197,26 +289,107 @@ const HostingServices = () => {
       Techraft Offers Hosting in both System Hosting and Email
     </h4></div>
     <Container className="hosting-services">
-      <div className="hosting-services-overlay-image"></div>
-      <div className="hosting-services-col">
-        <h4 className="fw-bold hosting-service-heading" id="web-hosting-header">Web Hosting</h4>
-        <p className="hosting-service-content">
-          We provide services in design and development of mobile applications,
-          desktop applications,
-          web applications with focus on responsiveness and good SEO.
-        </p>
-      </div>
-      <div className="hosting-services-overlay-image"></div>
-      <div className="hosting-services-col">
-        <h4 className="fw-bold hosting-service-heading" id="web-hosting-header">Email Hosting</h4>
-        <p className="hosting-service-content">
-          We provide services in design and development of mobile applications,
-          desktop applications,
-          web applications with focus on responsiveness and good SEO.
-        </p>
-        <button className="see-more-button">Explore More</button>
-      </div>
+    
     </Container>
+  </div>
+}
+
+const Reason = () =>{
+  return <div className="why-chose-us">
+  <Container>
+    <h3 className="why-chose-us-heading fw-b marg-top">Why Chose Us</h3>
+    <p className="why-chose-us-top-content">At Techcraft Technologies Ltd, we guarantee reliable solutions that work. Our working mode is guide by our values that we hold <br />close to heart. Ensuring that all products we deliver are the byproduct of these values.</p>
+  </Container>
+  <div className="reasons-card">
+  <Container>
+    <Row sm={1} md={4}>
+     <Col md={{span : 2, offset: 1}} className="mb-2">
+    <Card className="reason-card">
+    <Card.Header>
+    <FontAwesomeIcon icon={faGem} />
+    <Card.Title className="reason-card-text">
+      Collaboration
+    </Card.Title></Card.Header>
+    <Card.Body>
+      <Card.Text className="reason-card-text">
+      Ensuring great teamwork by having teams made up of several developers with different skill set all working on a common goal.
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <p className="reason-card-text fw-b"></p>
+    </Card.Footer>
+    </Card>
+    </Col>
+        <Col md={{span : 2, offset: 1}} className="mb-2">
+    <Card className="reason-card">
+    <Card.Header>
+      <FontAwesomeIcon icon={faLightbulb} />
+    <Card.Title className="reason-card-text">
+      Innovation
+    </Card.Title></Card.Header>
+    <Card.Body>
+      <Card.Text className="reason-card-text">
+        Helping our people in our organizations achieve their full potential, through fostering creativity and disruptive innovation when solving challenges
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <p className="reason-card-text fw-b"></p>
+    </Card.Footer>
+    </Card>
+    </Col>
+        <Col md={{span : 2, offset: 1}} className="mb-2">
+    <Card className="reason-card">
+    <Card.Header>
+      <FontAwesomeIcon icon={faLightbulb} />
+    <Card.Title className="reason-card-text">
+      Integrity
+    </Card.Title></Card.Header>
+    <Card.Body>
+      <Card.Text className="reason-card-text">
+      Working to deliver services without compromising our professional ethics and maintaining transparency on our organization and with our customers
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <p className="reason-card-text fw-b">See More</p>
+    </Card.Footer>
+    </Card>
+    </Col>   <Col md={{span : 2, offset: 1}} className="mb-2">
+    <Card className="reason-card">
+    <Card.Header>
+    <FontAwesomeIcon icon={faGem} />
+    <Card.Title className="reason-card-text">
+      Quality
+    </Card.Title></Card.Header>
+    <Card.Body>
+      <Card.Text className="reason-card-text">
+      Our provided ICT solutions function as per user requirement and are highly effective, robust , secure and reliable.
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <p className="reason-card-text fw-b"></p>
+    </Card.Footer>
+    </Card>
+    </Col>
+
+    </Row>
+    <Row className="social-media-icons justify-content-center">
+    <h1 className="reason-card-text mb-3 text-white">Also, You Can Follow Us on Social Media</h1>
+    <Col sm={{span: 2, offset: 1 }}>
+      <FontAwesomeIcon icon={faGithub} size="5x" className="brand-icon" />
+    </Col>
+    <Col sm={{span: 2, offset: 1 }}>
+      <FontAwesomeIcon icon={faFacebook} size="5x" className="brand-icon" />
+    </Col>
+    <Col sm={{span: 2, offset: 1 }}>
+      <FontAwesomeIcon icon={faInstagram} size="5x" className="brand-icon" />
+    </Col>
+    <Col sm={{span: 2, offset: 1 }}>
+      <FontAwesomeIcon icon={faLinkedin} size="5x" className="brand-icon" />
+    </Col>
+    
+    </Row>
+  </Container>
+  </div>
   </div>
 }
 
@@ -262,5 +435,6 @@ ReactDOM.render(<div>
   <Greetings />
   <App />
   <HostingServices />
-  <Services />
+  {/* <Services /> */}
+  <Reason />
 </div>, document.getElementById('root'))
