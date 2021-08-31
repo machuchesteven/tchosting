@@ -146,9 +146,11 @@ const App = () => {
                 </Col>
                 <Col span={9}>
                   <Container>
-                    <h3 className="fw-b center-align">Sorry But an Error Occured during loading up your domain<br />
-                      Can You try One More Time
-                    </h3>
+                    <Alert variant="danger">
+                      <h3 className="fw-b center-align">Sorry But an Error Occured during loading up your domain<br />
+                        Can You try One More Time
+                      </h3>
+                    </Alert>
                   </Container>
                 </Col>
               </Row>
