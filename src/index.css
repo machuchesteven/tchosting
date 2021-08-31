@@ -5,23 +5,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  ::-webkit-scrollbar {
-    width: 12px;
 }
+
 ::-webkit-scrollbar{
-  width: 5px;
-  color: blueviolet;
-}
+  width: 12px;
+  }
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-box-shadow: inset 0 0 6px rgba(79, 220, 255, 0.486); 
     border-radius: 10px;
-}
+  }
  
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
-}
-}
+    -webkit-box-shadow: inset 0 0 6px rgba(43, 117, 236, 0.945); 
+  }
 #arrow-down{
   color: #024A99;
 }
@@ -105,6 +102,13 @@ body {
   background-color: #024A99;
 
 }
+.why-us-icon{
+  margin: auto;
+  justify-content: center;
+  align-items:center;
+  color: white;
+
+}
 .why-chose-us-heading{
   color: white;
   align-items: center;
@@ -137,4 +141,17 @@ body {
 }
 .text-white{
   color: white !important;
+}
+.center-align{
+  text-align: center;
+  justify-content: center;
+
+}
+.see-more-button{
+  border-radius: 0px !important;
+}
+
+.brand-icon{
+  width: 100%;
+  height: 100%;
 }
