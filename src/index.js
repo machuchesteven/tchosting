@@ -8,17 +8,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faSearch, faCogs } from "@fortawesome/free-solid-svg-icons"
 import { faGem, faLightbulb } from "@fortawesome/free-regular-svg-icons"
 import { faGithub, faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+// using the routing library
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 
 document.title = "TechCraft Hosting"
 
 
 // the navigation bar for the application
 const Navigation = () => {
-  function loginButton(e) {
-    e.preventDefault()
-    console.log("Redirect to /login  screen")
-    window.location.href = "/login"
-  }
+
   return (
     <div>
       <BNavbar sticky="top" bg="light" expand="md" className="h-100">
@@ -30,7 +28,7 @@ const Navigation = () => {
             <Nav.Item style={{ flex: 3 }}><Nav.Link href="#services">Services</Nav.Link></Nav.Item>
             <Nav.Item style={{ flex: 2 }}><Nav.Link href="https://www.techcraft.co.tz/">Main Site</Nav.Link></Nav.Item>
           </Nav>
-          <Button variant="outline-primary" className="nav-button" onClick={(e) => loginButton(e)}>Log In</Button>
+          <Link to="/login"><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
 
         </Container>
       </BNavbar>
@@ -497,6 +495,38 @@ const Reason = () => {
 // map and contacts for the company
 
 
+// the login page
+
+const Login = () => {
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+  function signUp(e) {
+    e.preventDefault()
+    console.log("Wants to sign Up")
+  }
+  function handleLogin(e) {
+    e.preventDefault()
+    console.log(`${username} : username and ${password} : password`)
+  }
+  return <div className="justify-content-center">
+    <Container>
+      <Form onSubmit={(e) => handleLogin(e)} method="POST">
+        <Form.Label>Username</Form.Label>
+        <Form.Control type="text" placeholder="Enter Username" onChange={e => { setUsername(e.target.value) }} />
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Enter Your Password" onChange={e => { setPassword(e.target.value) }} />
+        <Button variant="primary" type="submit">LoginButton</Button>
+      </Form>
+    </Container>
+    <Container className="justify-content-center">
+      <h4>Or</h4>
+      <p>Are You New To Our Services, <Button onClick={(e) => { signUp(e) }}>Sign Up</Button></p>
+
+    </Container>
+  </div>
+}
+
+
 
 
 
@@ -512,16 +542,32 @@ const Reason = () => {
 // some of the works performed by the company
 
 
+const Main = () => {
+  return <div>
 
+    <Greetings />
+    <App />
+    <HostingServices />
+    {/* <Services /> */}
+    <Reason />
+  </div>
+}
 
 
 
 
 ReactDOM.render(<div>
-  <Navigation />
-  <Greetings />
-  <App />
-  <HostingServices />
-  {/* <Services /> */}
-  <Reason />
+  <Router basename="/tchosting">
+    <Navigation />
+    <Switch>
+      <Route path="/" exact>
+        <Main />
+      </Route>
+      <Route path="/login" exact >
+        <Slide right>
+          <Login />
+        </Slide>
+      </Route>
+    </Switch>
+  </Router>
 </div>, document.getElementById('root'))
