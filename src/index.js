@@ -9,7 +9,7 @@ import { faArrowDown, faSearch, faCogs } from "@fortawesome/free-solid-svg-icons
 import { faGem, faLightbulb } from "@fortawesome/free-regular-svg-icons"
 import { faGithub, faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 
-
+document.title = "TechCraft Hosting"
 
 
 // the navigation bar for the application
@@ -120,9 +120,10 @@ const App = () => {
       return <div>
         <Alert variant="success">
           <Slide right>
-
-            <h1>The domain is not available, But there are other suggestions</h1>
-            <Button variant="primary" onClick={(e) => { setAskSuggestions(true) }}><FontAwesomeIcon icon={faSearch} />Click here to get them</Button>
+            <Container>
+              <h1>The domain is not available, But there are other suggestions</h1>
+              <Button variant="primary" onClick={(e) => { setAskSuggestions(true) }}><FontAwesomeIcon icon={faSearch} size="lg" /> Click here to get them</Button>
+            </Container>
           </Slide>
         </Alert>
         <Container>
@@ -226,8 +227,14 @@ const App = () => {
         </Row>
       </Form>
     </Container>
-    <div>{submitted ? `We are Looking for ${domainName}` : ``}</div>
-    <div>{submitted && isAvailable ? "The domain is submitted and data is fetched" : submitted && isAvailable === null ? "The value is submitted but the check is not complete" : ""}</div>
+    <div>
+      <Container className="justify-content-center">
+        <h4 className="align-center">{submitted ? `We are Looking for ${domainName}` : ``}</h4>
+      </Container>
+    </div>
+    <div className="container">
+      {submitted && isAvailable ? "The domain is submitted and data is fetched" : submitted && isAvailable === null ? "Just A second" : ""}
+    </div>
     <Buy />
     {availableCheck}
     <div><Container>
