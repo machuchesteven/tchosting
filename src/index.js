@@ -11,6 +11,10 @@ import { faGithub, faFacebook, faInstagram, faLinkedin } from "@fortawesome/free
 // using the routing library
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
 
+
+// importing and using custom pages 
+import Homepage from './pages/Homepage'
+import LoginPage from './pages/Login'
 document.title = "TechCraft Hosting"
 
 
@@ -19,15 +23,18 @@ const Navigation = () => {
 
   return (
     <div>
-      <BNavbar sticky="top" bg="light" expand="md" className="h-100">
+      <BNavbar expand="md" bg="light" variant="light">
         <Container>
-          <div><BNavbar.Brand><b id="brand-name">TechCraftHost</b></BNavbar.Brand></div>
-          <Nav className="justify-content-center" activeKey="/" id="navigation">
-            <Nav.Item style={{ flex: 3 }}><Nav.Link href="/">Home</Nav.Link></Nav.Item>
-            <Nav.Item style={{ flex: 3 }}><Nav.Link href="/">Consult Us</Nav.Link></Nav.Item>
-            <Nav.Item style={{ flex: 3 }}><Nav.Link href="#services">Services</Nav.Link></Nav.Item>
-            <Nav.Item style={{ flex: 2 }}><Nav.Link href="https://www.techcraft.co.tz/">Main Site</Nav.Link></Nav.Item>
-          </Nav>
+          <BNavbar.Brand><b id="brand-name">TechCraftHost</b></BNavbar.Brand>
+          <BNavbar.Toggle aria-controls="responsive-navbar-nav" />
+          <BNavbar.Collapse id="responsive-navbar-nav">
+            <Nav className="justify-content-center m-auto" activeKey="/" id="navigation">
+              <Nav.Item ><Nav.Link href="/">Home</Nav.Link></Nav.Item>
+              <Nav.Item ><Nav.Link href="/">Consult Us</Nav.Link></Nav.Item>
+              <Nav.Item ><Nav.Link href="#services">Services</Nav.Link></Nav.Item>
+              <Nav.Item ><Nav.Link href="https://www.techcraft.co.tz/">Main Site</Nav.Link></Nav.Item>
+            </Nav>
+          </BNavbar.Collapse>
           <Link to="/login"><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
 
         </Container>
@@ -215,12 +222,12 @@ const App = () => {
     <Container>
       <Form method="POST" onSubmit={(e) => handleSubmit(e)} className="m-2">
         <Row sm={1} md={2} className="justify-content-center">
-          <Col sm={9} md={8} className="justify-content-sm-center">
+          <Col sm md={8} className="justify-content-sm-center">
 
             <Form.Control type="text" placeholder="Domain Name" onChange={(e) => { handleNameChange(e) }} id="domain-input" className="shadow m-2" required />
           </Col>
-          <Col sm={3} md={4} className="justify-content-sm-center" >
-            <Button type="submit" variant="outline-primary" className="m-2 shadow">Look For Your Domain</Button>
+          <Col sm={12} md={4} className="justify-content-sm-center" >
+            <Button type="submit" variant="outline-primary" className="m-2 shadow w-100">Look For Your Domain</Button>
           </Col>
         </Row>
       </Form>
@@ -379,8 +386,8 @@ const Reason = () => {
     </Container>
     <div className="reasons-card">
       <Container>
-        <Row sm={1} md={4}>
-          <Col md={{ span: 2, offset: 1 }} className="mb-2">
+        <Row className="justify-content-center">
+          <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
                 <div className="justify-content-center">
@@ -399,7 +406,7 @@ const Reason = () => {
               </Card.Footer>
             </Card>
           </Col>
-          <Col md={{ span: 2, offset: 1 }} className="mb-2">
+          <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
                 <div className="justify-content-center align-center">
@@ -418,7 +425,7 @@ const Reason = () => {
               </Card.Footer>
             </Card>
           </Col>
-          <Col md={{ span: 2, offset: 1 }} className="mb-2">
+          <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
                 <div className="justify-content-center align-center">
@@ -436,7 +443,8 @@ const Reason = () => {
                 <p className="reason-card-text fw-b">See More</p>
               </Card.Footer>
             </Card>
-          </Col>   <Col md={{ span: 2, offset: 1 }} className="mb-2">
+          </Col>
+          <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
                 <div className="justify-content-center align-center">
@@ -491,54 +499,6 @@ const Reason = () => {
 
 
 
-
-// map and contacts for the company
-
-
-// the login page
-
-const Login = () => {
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-  function signUp(e) {
-    e.preventDefault()
-    console.log("Wants to sign Up")
-  }
-  function handleLogin(e) {
-    e.preventDefault()
-    console.log(`${username} : username and ${password} : password`)
-  }
-  return <div className="justify-content-center">
-    <Container>
-      <Form onSubmit={(e) => handleLogin(e)} method="POST">
-        <Form.Label>Username</Form.Label>
-        <Form.Control type="text" placeholder="Enter Username" onChange={e => { setUsername(e.target.value) }} />
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Enter Your Password" onChange={e => { setPassword(e.target.value) }} />
-        <Button variant="primary" type="submit">LoginButton</Button>
-      </Form>
-    </Container>
-    <Container className="justify-content-center">
-      <h4>Or</h4>
-      <p>Are You New To Our Services, <Button onClick={(e) => { signUp(e) }}>Sign Up</Button></p>
-
-    </Container>
-  </div>
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // some of the works performed by the company
 
 
@@ -557,16 +517,19 @@ const Main = () => {
 
 
 ReactDOM.render(<div>
-  <Router basename="/tchosting">
+  <Router basename="tchosting">
     <Navigation />
     <Switch>
       <Route path="/" exact>
         <Main />
       </Route>
-      <Route path="/login" exact >
-        <Slide right>
-          <Login />
-        </Slide>
+    </Switch>
+    <Switch>
+      <Route path="/homepage" exact>
+        <Homepage />
+      </Route>
+      <Route path="/login" exact>
+        <LoginPage />
       </Route>
     </Switch>
   </Router>
