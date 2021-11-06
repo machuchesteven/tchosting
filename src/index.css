@@ -159,9 +159,13 @@ body {
   width: 100%;
   height: 100%;
 }
+.login-signup-page{
+  max-width: 60%;
+}
 
-@media screen and (max-width: 640px) {
-  .login-signup-form{
+
+@media screen  and (max-width: 640px) {
+  .login-signup-page{
     width: 80%;
     margin: auto;
   }

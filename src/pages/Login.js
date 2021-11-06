@@ -14,7 +14,7 @@ const LoginPage = () => {
     function CreateAccount() {
         console.log("User want to create a new account")
     }
-    return <div>
+    return <div className="login-signup-page">
         <Container>
             <h3>Login To Enjoy all the functionalities From Techcraft Hosting Service</h3>
             <div className="login-signup-form">
