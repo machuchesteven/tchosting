@@ -486,9 +486,43 @@ const Reason = () => {
   </div>
 }
 
-
-
-
+const Services = () => {
+  const [services, setServices] = useState([])
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/subscription/service')
+      .then(response => response.json())
+      .then(data => {
+        setServices(data)
+      })
+      .catch(err => {
+        console.log(err.message)
+        return <div>
+          <Container>
+            <h2 className="text-center">We are Offering the Best Deployment problem you will have to encounter</h2>
+          </Container>
+        </div>
+      })
+  }, [])
+  if (services.length > 0) {
+    return <div>
+      <Row xs="auto" md="3" lg="4" >
+        {services.map((service) =>
+          <Col key={service.id}>
+            <div>
+              <h4>{service.name}</h4><hr />
+              <p>{service.description}</p>
+              <im src={service.image} />
+            </div>
+          </Col>)}
+      </Row>
+    </div>
+  }
+  return <div>
+    <Container>
+      <h3>Techcraft Offers Most of the services considering Deployment, Automation and Hosting</h3>
+    </Container>
+  </div>
+}
 
 
 
@@ -522,6 +556,7 @@ ReactDOM.render(<div>
     <Switch>
       <Route path="/" exact>
         <Main />
+        <Services className="my-5" />
       </Route>
     </Switch>
     <Switch>

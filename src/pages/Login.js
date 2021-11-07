@@ -4,17 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Slide } from 'react-reveal'
 
 
-
 const LoginPage = () => {
     const [key, setKey] = useState("login")
     function Authenticate() {
         console.log("The user wants to authenticate")
-
     }
     function CreateAccount() {
         console.log("User want to create a new account")
     }
-    return <div className="login-signup-page">
+    return <div className="login-signup-page mx-auto mt-sm-3 mt-5">
         <Container>
             <h3>Login To Enjoy all the functionalities From Techcraft Hosting Service</h3>
             <div className="login-signup-form">
