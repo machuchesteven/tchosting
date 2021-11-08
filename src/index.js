@@ -25,8 +25,8 @@ const Navigation = () => {
     <div>
       <BNavbar expand="md" bg="light" variant="light">
         <Container>
-          <BNavbar.Brand><b id="brand-name">TechCraftHost</b></BNavbar.Brand>
-          <BNavbar.Toggle aria-controls="responsive-navbar-nav" />
+          <BNavbar.Brand sm={{ order: 2 }}><b id="brand-name">TechCraftHost</b></BNavbar.Brand>
+          <BNavbar.Toggle sm={{ order: 1 }} aria-controls="responsive-navbar-nav" />
           <BNavbar.Collapse id="responsive-navbar-nav">
             <Nav className="justify-content-center m-auto" activeKey="/" id="navigation">
               <Nav.Item ><Nav.Link href="/">Home</Nav.Link></Nav.Item>
@@ -35,7 +35,7 @@ const Navigation = () => {
               <Nav.Item ><Nav.Link href="https://www.techcraft.co.tz/">Main Site</Nav.Link></Nav.Item>
             </Nav>
           </BNavbar.Collapse>
-          <Link to="/login"><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
+          <Link to="/login" sm={{ order: 12 }}><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
 
         </Container>
       </BNavbar>
@@ -249,85 +249,6 @@ const App = () => {
   </div>
 }
 
-// services div
-// const Services = () => {
-//   return <div id="services" className="bg-dark">
-//     <Container>
-//       <div id="services-heading-container">
-//         <h2 className="fw-bold display-8" id="services-heading">
-//           We offer More Services like :-
-//         </h2>
-//         <div id="services-cards-container">
-//           Here goes the ervices cards and their rows
-//         </div>
-//       </div>
-//     </Container>
-//   </div>
-// }
-// const Services = () =>{
-//  return <div className="services-container"  id="services">
-//     <div className="services">
-//       <Fade left>
-//       {/* <FontAwesomeIcon icon={faSpinner} spin size="10x" style={{color: "blueviolet"}}/> */}
-//       <h2><Slide left>TechCraft Technologies </Slide><Slide right>Offers Other Services</Slide></h2>
-//       </Fade>
-//       <Container className="justify-content-center services" id="service-container">
-//       <Row xs={1} md={2} lg={2}>
-//       <Card className="justify-content-center col-md-5 shadow-sm mt-2 ml-2">
-//           <Card.Title>Software Development</Card.Title>
-//           <Card.Body><Card.Text>
-//           We provide services in design and development of mobile applications, 
-//           desktop applications, 
-//           web applications with focus on responsiveness and good SEO.
-//           </Card.Text></Card.Body>
-//         </Card>
-//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
-//           <Card.Title>ICT Infrastructure Support & Maintenance</Card.Title>
-//           <Card.Body><Card.Text>
-//           We provide wire and wireless networking solutions for residential and enterprise applications. We also provide support and maintenance services tailored tospecific ICT requirements.
-//           </Card.Text></Card.Body>
-//         </Card>        
-//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
-//           <Card.Title>Research</Card.Title>
-//           <Card.Body><Card.Text>
-//           We conduct applied research in various areas of information and communication technologies. We also develop data collection and entry systems for use in both qualitative and quantitative research in various fields.
-//           </Card.Text></Card.Body>
-//         </Card>        
-//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
-//           <Card.Title>Training</Card.Title>
-//           <Card.Body><Card.Text>
-//           We offer professional training in Mobile apps development, Desktop and Web apps development, IoT products & services development, Computer networking, Cyber security and Business Model Development for ICT products & services.
-//           </Card.Text></Card.Body>
-//         </Card>        
-//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
-//           <Card.Title>Artificial Intelligence</Card.Title>
-//           <Card.Body><Card.Text>
-//           We harnessing the power of data to accelerate change of your business by leveraging AI and analytics for business to unlock new efficiencies and increase productivity using enterprise-wide AI solutions that deliver game changing results.
-//           </Card.Text></Card.Body>
-//         </Card>        
-//         <Card className="justify-content-center col-md-5 shadow-sm m-2">
-//           <Card.Title>Internet of Things (IoT)</Card.Title>
-//           <Card.Body><Card.Text>
-//           We provide strategic consulting, development, data analytics tools and application management using network of physical devices connected and exchanging data to solve business challenges and get new revenue streams via IoT technology.
-//           </Card.Text></Card.Body>
-//         </Card>  
-//         <div className=" col-md-3"></div> 
-//         <LightSpeed right>     
-//         <Card className="justify-content-center shadow-sm m-2">
-//           <Card.Title>ICT Consultancy</Card.Title>
-//           <Card.Body><Card.Text>
-//           We offer a range of consultancy services in ICT and provide security audit services.
-//           </Card.Text></Card.Body>
-//         </Card>
-//         </LightSpeed>
-//       </Row>
-//       </Container>
-//       </div>
-//       </div>
-
-// }
-
-
 
 // The hosting services we offer
 const HostingServices = () => {
@@ -488,34 +409,45 @@ const Reason = () => {
 
 const Services = () => {
   const [services, setServices] = useState([])
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/subscription/service')
-      .then(response => response.json())
-      .then(data => {
-        setServices(data)
+    if (!loaded) {
+      fetch('http://127.0.0.1:8000/subscription/service/', {
+        mode: 'cors',
+        method: 'GET', // or 'PUT'
       })
-      .catch(err => {
-        console.log(err.message)
-        return <div>
-          <Container>
-            <h2 className="text-center">We are Offering the Best Deployment problem you will have to encounter</h2>
-          </Container>
-        </div>
-      })
-  }, [])
-  if (services.length > 0) {
+        .then(response => response.json())
+        .then(data => {
+          setServices(data)
+          setLoaded(true)
+        })
+        .catch(err => {
+          console.log(err.message)
+          return <div>
+            <Container>
+              <h2 className="text-center">We are Offering the Best Deployment problem you will have to encounter</h2>
+            </Container>
+          </div>
+        })
+      return;
+    }
+  })
+  if (loaded) {
+    console.log(services.length)
     return <div>
-      <Row xs="auto" md="3" lg="4" >
-        {services.map((service) =>
-          <Col key={service.id}>
-            <div>
-              <h4>{service.name}</h4><hr />
-              <p>{service.description}</p>
-              <im src={service.image} />
-            </div>
-          </Col>)}
-      </Row>
-    </div>
+      <Container bg="white" className="justify-content-center">
+        <Row xs="auto" md="3" lg="4" className="g-3">
+          {services.map((service) =>
+            <Col key={service.id} bg="light" className="service-container">
+              <div>
+                <h4>{service.name}</h4><hr />
+                <p>{service.description}</p>
+                <img src={service.image} class="img-fluid" />
+              </div>
+            </Col>)}
+        </Row>
+      </Container>
+    </div >
   }
   return <div>
     <Container>

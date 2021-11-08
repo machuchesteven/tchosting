@@ -47,7 +47,10 @@ body {
 .fw-b{
   font-weight: bold;
 }
-
+.service-container{
+  max-height: min-content;
+  text-overflow: clip;
+}
 .footer{
   position: fixed;
   bottom: opx;
