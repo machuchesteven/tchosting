@@ -25,8 +25,8 @@ const Navigation = () => {
     <div>
       <BNavbar expand="md" bg="light" variant="light">
         <Container>
-          <BNavbar.Brand sm={{ order: 2 }}><b id="brand-name">TechCraftHost</b></BNavbar.Brand>
-          <BNavbar.Toggle sm={{ order: 1 }} aria-controls="responsive-navbar-nav" />
+          <BNavbar.Toggle aria-controls="responsive-navbar-nav" />
+          <BNavbar.Brand ><b id="brand-name">TechCraftHost</b></BNavbar.Brand>
           <BNavbar.Collapse id="responsive-navbar-nav">
             <Nav className="justify-content-center m-auto" activeKey="/" id="navigation">
               <Nav.Item ><Nav.Link href="/">Home</Nav.Link></Nav.Item>
@@ -35,8 +35,7 @@ const Navigation = () => {
               <Nav.Item ><Nav.Link href="https://www.techcraft.co.tz/">Main Site</Nav.Link></Nav.Item>
             </Nav>
           </BNavbar.Collapse>
-          <Link to="/login" sm={{ order: 12 }}><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
-
+          <Link to="/login" ><Button variant="outline-primary" className="nav-button">Log In</Button></Link>
         </Container>
       </BNavbar>
     </div>
@@ -311,8 +310,8 @@ const Reason = () => {
           <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
-                <div className="justify-content-center">
-                  <FontAwesomeIcon icon={faGem} size="3x" className="ml-5" />
+                <div className="justify-content-center text-center">
+                  <FontAwesomeIcon icon={faGem} size="3x" className="m-auto justify-content-center" />
                 </div>
                 <Card.Title className="reason-card-text">
                   Collaboration
@@ -330,7 +329,7 @@ const Reason = () => {
           <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
-                <div className="justify-content-center align-center">
+                <div className="justify-content-center align-center text-center">
                   <FontAwesomeIcon icon={faLightbulb} size="3x" />
                 </div>
                 <Card.Title className="reason-card-text">
@@ -349,8 +348,8 @@ const Reason = () => {
           <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
-                <div className="justify-content-center align-center">
-                  <FontAwesomeIcon icon={faLightbulb} size="3x" />
+                <div className="justify-content-center align-center text-center">
+                  <FontAwesomeIcon icon={faLightbulb} size="3x" className="justify-content-center mx-auto" />
                 </div>
                 <Card.Title className="reason-card-text">
                   Integrity
@@ -368,8 +367,8 @@ const Reason = () => {
           <Col sm={6} md={4} className="mb-2">
             <Card className="reason-card">
               <Card.Header>
-                <div className="justify-content-center align-center">
-                  <FontAwesomeIcon icon={faGem} size="3x" />
+                <div className="justify-content-center align-center text-center">
+                  <FontAwesomeIcon icon={faGem} size="3x" className="justify-content-center mx-auto" />
                 </div>
                 <Card.Title className="reason-card-text">
                   Quality
