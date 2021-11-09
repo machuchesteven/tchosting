@@ -18,6 +18,7 @@ import LoginPage from './pages/Login'
 document.title = "TechCraft Hosting"
 
 
+
 // the navigation bar for the application
 const Navigation = () => {
 
@@ -437,11 +438,11 @@ const Services = () => {
       <Container bg="white" className="justify-content-center">
         <Row xs="auto" md="3" lg="4" className="g-3">
           {services.map((service) =>
-            <Col key={service.id} bg="light" className="service-container">
+            <Col key={service.id} bg="light" className="service-container mx-auto mt-5">
               <div>
                 <h4>{service.name}</h4><hr />
-                <p>{service.description}</p>
-                <img src={service.image} class="img-fluid" />
+                <p className="service-description-text">{service.description}</p>
+                <img src={service.image} className="img-fluid" />
               </div>
             </Col>)}
         </Row>
@@ -495,7 +496,7 @@ ReactDOM.render(<div>
         <Homepage />
       </Route>
       <Route path="/login" exact>
-        <LoginPage />
+        <LoginPage domainChecked="machu.com" />
       </Route>
     </Switch>
   </Router>

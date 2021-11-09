@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.service-description-text{
+  max-height: 300ch;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 4;
+}
 
 ::-webkit-scrollbar{
   width: 12px;
@@ -116,6 +123,10 @@ body {
   color: white;
 
 }
+
+.login-input{
+  margin-left: 5px;
+}
 .why-chose-us-heading{
   color: white;
   align-items: center;
@@ -125,6 +136,10 @@ body {
 }
 .why-chose-us-heading :hover{
 
+}
+.btn-outline-colored{
+  color: linear-gradient(to top right, #5a189a, #240046) !important;
+  border-color: linear-gradient(to top right, #5a189a, #240046) !important;
 }
 .why-chose-us-top-content{
   align-items: center;
