@@ -58,7 +58,7 @@ const LoginPage = (props) => {
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type="text" bg="light" />
                                 <Form.Label>Enter Your Password</Form.Label>
-                                <Form.Control type="password" className="rounded-pill bg-light ml-md-3" />
+                                <Form.Control type="password" className="rounded-pill bg-light ml-md-3 login-input" />
                                 <Form.Label>Confirm Your Password</Form.Label>
                                 <Form.Control type="password" />
                                 <Button variant='outline-dark w-100' className="my-2 fw-b shadow-sm rounded-pill" onClick={CreateAccount}>Create Account</Button>

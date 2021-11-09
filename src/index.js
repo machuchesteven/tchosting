@@ -54,7 +54,9 @@ const Navigation = () => {
 const CallToBuy = (props) => {
   return <div id="call-to-buy" >
     <Container className="justify-content-center">
-      <h3>You have searched for {props.name}, <Button variant="outline-success">Buy It Now</Button> and Get a {props.discount}% discount once you buy it with us </h3>
+      <Alert variant="success">
+        <h3>You have searched for {props.name}, <Button variant="outline-success">Buy It Now</Button> and Get a {props.discount}% discount once you buy it with us </h3>
+      </Alert>
     </Container>
   </div >
 }
@@ -126,8 +128,10 @@ const App = () => {
         <Alert variant="success">
           <Slide right>
             <Container>
-              <h1>The domain is not available, But there are other suggestions</h1>
-              <Button variant="primary" onClick={(e) => { setAskSuggestions(true) }}><FontAwesomeIcon icon={faSearch} size="lg" /> Click here to get them</Button>
+              <Alert variant="info">
+                <h1>The domain is not available, But there are other suggestions</h1>
+                <Button variant="primary" onClick={(e) => { setAskSuggestions(true) }}><FontAwesomeIcon icon={faSearch} size="lg" /> Click here to get them</Button>
+              </Alert>
             </Container>
           </Slide>
         </Alert>
@@ -166,8 +170,9 @@ const App = () => {
       </Alert>
     }
     else {
-      return <Fade in><div className="bg-light pt-5 pb-5"><Container>
+      return <Fade in><div className="bg-light pt-5 pb-5"><Container><Alert varinat="secondary">
         <h4 className="center-align">Am pretty sure you will enjoy working with us</h4>
+      </Alert>
       </Container></div></Fade>
     }
   }
