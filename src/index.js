@@ -55,7 +55,7 @@ const CallToBuy = (props) => {
   return <div id="call-to-buy" >
     <Container className="justify-content-center">
       <Alert variant="success">
-        <h3>You have searched for {props.name}, <Button variant="outline-success">Buy It Now</Button> and Get a {props.discount}% discount once you buy it with us </h3>
+        <h3>You have searched for {props.name}, <Button variant="success" >Buy It Now</Button> and Get a {props.discount}% discount once you buy it with us </h3>
       </Alert>
     </Container>
   </div >
@@ -281,7 +281,7 @@ const HostingServices = () => {
               <Card.Text>We Offer Hosting in email bra bra bra</Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button className="see-more-button" onClick={e => seeMoreMail(e)}>See More</Button>
+              <Button variant="info w-100" onClick={e => seeMoreMail(e)}>See More</Button>
             </Card.Footer>
           </Card>
         </Col>
@@ -294,7 +294,7 @@ const HostingServices = () => {
               <Card.Text>We Offer Hosting in Our servers  bra bra bra</Card.Text>
             </Card.Body>
             <Card.Footer>
-              <Button className="see-more-button" onClick={e => seeMoreWeb(e)}>See More</Button>
+              <Button variant="info w-100" onClick={e => seeMoreWeb(e)}>See More</Button>
             </Card.Footer>
           </Card>
         </Col>
