@@ -391,7 +391,7 @@ const Reason = () => {
           </Col>
 
         </Row>
-        <Row className="social-media-icons justify-content-center">
+        <Row className="social-media-icons justify-content-center d-sm-inline">
           <h1 className="reason-card-text mb-3 text-white">Also, You Can Follow Us on Social Media</h1>
           <Col sm={{ span: 2, offset: 1 }}>
             <FontAwesomeIcon icon={faGithub} size="4x" className="brand-icon" />
