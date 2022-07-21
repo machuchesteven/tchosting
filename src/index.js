@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
-import { Alert, Form, Button, Row, Col, Container, Navbar as BNavbar, Nav, Card } from 'react-bootstrap'
+import { Alert, Form, Button, Row, Col, Container, Navbar as BNavbar, Nav, Card, ListGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
 import { Bounce, LightSpeed, Slide, Fade } from 'react-reveal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown, faSearch, faCogs } from "@fortawesome/free-solid-svg-icons"
+import { faArrowDown, faSearch, faCogs, faMailBulk, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { faGem, faLightbulb } from "@fortawesome/free-regular-svg-icons"
 import { faGithub, faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 // using the routing library
@@ -65,9 +65,9 @@ const CallToBuy = (props) => {
 
 // Greetings and call to action
 const Greetings = () => {
-  return <div >
+  return <div className="m-md-5 p-md-2 shadow-sm">
     <Container className="justify-content-center">
-      <Bounce top>
+      <Bounce top className="m-md-5 p-md-2 shadow-sm">
         <h1 className="display-5 fw-bold" id="site-greetings">
           Get Your Business, Brand, or Office Domain<br />
           And Scale Up Your Business With<br />
@@ -205,11 +205,13 @@ const App = () => {
   function availableCheck() {
     if (isAvailable) {
       return <div>
-        <LightSpeed bottom>
-          <Container>
-            <h1>The Domain You have Looked for is {checkResult}</h1>
-          </Container>
-        </LightSpeed>
+        <Container className="p-md-5 m-sm-2 m-md-5">
+          <LightSpeed bottom>
+            <Container>
+              <h1>The Domain You have Looked for is {checkResult}</h1>
+            </Container>
+          </LightSpeed>
+        </Container>
       </div>
     } else {
       return <div>
@@ -246,10 +248,13 @@ const App = () => {
       {submitted && isAvailable ? "The domain is submitted and data is fetched" : submitted && isAvailable === null ? "Just A second" : ""}
     </div>
     <Buy />
+
     {availableCheck}
-    <div><Container>
-      {isAvailable !== null ? `${checkResult}` : `Techcraft Offers The Best way to work with its customers`}
-    </Container></div>
+    <div>
+      <Container className="p-md-2">
+        <p className="text-center">{isAvailable !== null ? `${checkResult}` : `Techcraft Offers The Best way to work with its customers`}</p>
+      </Container>
+    </div>
     {empty}
   </div>
 }
@@ -266,34 +271,49 @@ const HostingServices = () => {
     console.log("want to see more Web")
   }
 
-  return <div className="hosting-services-container">
-    <div><h4 className="hosting-services-header center-align">
-      Techraft Offers Hosting in both System Hosting and Email
-    </h4></div>
+  return <div className="hosting-services-container m-md-5 p-md-5 bg-light">
+    <div className="mt-2">
+      <h4 className="hosting-services-header center-align">
+        Techraft Offers Hosting in both System Hosting and Email
+      </h4>
+    </div>
     <Container className="hosting-services">
-      <Row sm={1} md={2}>
-        <Col md={{ span: 4, offset: 1 }}>
-          <Card className="justify-content-center shadow shadow-sm bg-white">
-            <Card.Header>
+      <Row sm={1} md={3} gap={5}>
+        <Col md={{ span: 4 }}>
+          <Card className="justify-content-center shadow shadow-sm bg-white m-md-2">
+            <Card.Header className="m-md-2">
               <Card.Title>Email Hosting</Card.Title>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="m-md-2">
               <Card.Text>We Offer Hosting in email bra bra bra</Card.Text>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="m-md-2">
               <Button variant="info w-100" onClick={e => seeMoreMail(e)}>See More</Button>
             </Card.Footer>
           </Card>
         </Col>
-        <Col md={{ span: 4, offset: 1 }}>
-          <Card className="justify-content-center shadow shadow-sm bg-white">
-            <Card.Header>
-              <Card.Title>Web And System Hosting</Card.Title>
+        <Col md={{ span: 4 }}>
+          <Card className="justify-content-center shadow shadow-sm bg-white m-md-2">
+            <Card.Header className="m-md-2">
+              <Card.Title >Web And System Hosting</Card.Title>
             </Card.Header>
-            <Card.Body>
+            <Card.Body className="m-md-2">
               <Card.Text>We Offer Hosting in Our servers  bra bra bra</Card.Text>
             </Card.Body>
-            <Card.Footer>
+            <Card.Footer className="m-md-2">
+              <Button variant="info w-100" onClick={e => seeMoreWeb(e)}>See More</Button>
+            </Card.Footer>
+          </Card>
+        </Col>
+        <Col md={{ span: 4 }}>
+          <Card className="justify-content-center shadow shadow-sm bg-white m-md-2">
+            <Card.Header className="m-md-2">
+              <Card.Title>Domain Names Selling</Card.Title>
+            </Card.Header>
+            <Card.Body className="m-md-2">
+              <Card.Text>We Offer Domain names as and add-in service freely for our hosters in Our servers  bra bra bra</Card.Text>
+            </Card.Body>
+            <Card.Footer className="m-md-2">
               <Button variant="info w-100" onClick={e => seeMoreWeb(e)}>See More</Button>
             </Card.Footer>
           </Card>
@@ -305,7 +325,7 @@ const HostingServices = () => {
 }
 
 const Reason = () => {
-  return <div className="why-chose-us">
+  return <div className="why-chose-us p-5">
     <Container>
       <h3 className="why-chose-us-heading fw-b marg-top">Why Chose Us</h3>
       <p className="why-chose-us-top-content">At Techcraft Technologies Ltd, we guarantee reliable solutions that work. Our working mode is guide by our values that we hold <br />close to heart. Ensuring that all products we deliver are the byproduct of these values.</p>
@@ -391,18 +411,18 @@ const Reason = () => {
           </Col>
 
         </Row>
-        <Row className="social-media-icons justify-content-center d-sm-inline">
+        <Row className="social-media-icons justify-content-center ">
           <h1 className="reason-card-text mb-3 text-white">Also, You Can Follow Us on Social Media</h1>
-          <Col sm={3}>
+          <Col sm={{ span: 2, offset: 1 }}>
             <FontAwesomeIcon icon={faGithub} size="4x" className="brand-icon" />
           </Col>
-          <Col sm={3}>
+          <Col sm={{ span: 2, offset: 1 }}>
             <FontAwesomeIcon icon={faFacebook} size="4x" className="brand-icon" />
           </Col>
-          <Col sm={3}>
+          <Col sm={{ span: 2, offset: 1 }}>
             <FontAwesomeIcon icon={faInstagram} size="4x" className="brand-icon" />
           </Col>
-          <Col sm={3}>
+          <Col sm={{ span: 2, offset: 1 }}>
             <FontAwesomeIcon icon={faLinkedin} size="4x" className="brand-icon" />
           </Col>
 
@@ -456,9 +476,43 @@ const Services = () => {
   }
   return <div>
     <Container>
-      <h3>Techcraft Offers Most of the services considering Deployment, Automation and Hosting</h3>
     </Container>
   </div>
+}
+
+const Footer = () => {
+  return (<Container fluid className="bg-dark text-white p-5">
+    <Row className="justify-content-center">
+      <Col sm={6} md={4} className="mb-2 ml-sm-5">
+        <h4>Physical Address</h4>
+        <address>
+          <p className="footer-text">Mbezi Beach, Goigi</p>
+        </address>
+        <p><FontAwesomeIcon icon={faPhone} /> 0758  286 451</p>
+        <p><FontAwesomeIcon icon={faMailBulk} />info@techcraft.co.tz</p>
+      </Col>
+      <Col sm={6} md={4} className="mb-2 ml-sm-5">
+        <h4>Other Links</h4>
+        <ul>
+          <li>Homepage</li> <hr />
+          <li>Registration</li><hr />
+          <li>Jobs and Recruitment</li><hr />
+          <li>Contact Us</li><hr />
+          <li>Our Policies</li><hr />
+        </ul>
+      </Col>
+      <Col sm={6} md={4} className="mb-2 ml-sm-5">
+        <h4>Our Partners</h4>
+        <ListGroup className="bg-dark text-white b-white">
+          <ListGroup.Item className="bg-dark text-white m-sm-2 p-sm-2">Techcraft</ListGroup.Item>
+          <ListGroup.Item className="bg-dark text-white m-sm-2 p-sm-2">UDSM</ListGroup.Item>
+          <ListGroup.Item className="bg-dark text-white m-sm-2 p-sm-2">MachuStudio</ListGroup.Item>
+          <ListGroup.Item className="bg-dark text-white m-sm-2 p-sm-2">Cisco Tanzania</ListGroup.Item>
+        </ListGroup>
+      </Col>
+    </Row>
+
+  </Container >)
 }
 
 
@@ -504,5 +558,6 @@ ReactDOM.render(<div>
         <LoginPage domainChecked="machu.com" />
       </Route>
     </Switch>
+    <Footer />
   </Router>
 </div>, document.getElementById('root'))
