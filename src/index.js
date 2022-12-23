@@ -3,13 +3,12 @@ import ReactDOM from 'react-dom'
 import { Alert, Form, Button, Row, Col, Container, Navbar as BNavbar, Nav, Card, ListGroup } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './index.css'
-import { Bounce, LightSpeed, Slide, Fade } from 'react-reveal'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowDown, faSearch, faCogs, faMailBulk, faPhone } from "@fortawesome/free-solid-svg-icons"
 import { faGem, faLightbulb } from "@fortawesome/free-regular-svg-icons"
 import { faGithub, faFacebook, faInstagram, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 // using the routing library
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom"
 
 
 // importing and using custom pages 
@@ -67,14 +66,14 @@ const CallToBuy = (props) => {
 const Greetings = () => {
   return <div className="m-md-5 p-md-2 shadow-sm">
     <Container className="justify-content-center">
-      <Bounce top className="m-md-5 p-md-2 shadow-sm">
+      <div className="m-md-5 p-md-2 shadow-sm">
         <h1 className="display-5 fw-bold" id="site-greetings">
           Get Your Business, Brand, or Office Domain<br />
           And Scale Up Your Business With<br />
           Us. It's Just A Single Click
           <FontAwesomeIcon icon={faArrowDown} id="arrow-down" />
         </h1>
-      </Bounce>
+      </div>
     </Container>
   </div>
 }
@@ -119,21 +118,21 @@ const App = () => {
     }
     if (submitted && checkResult === "AVAILABLE") {
       return <div>
-        <Bounce>
+        <div>
           <CallToBuy name={domainName} discount={20} />
-        </Bounce>
+        </div>
       </div>
     } else if (submitted && checkResult === "UNAVAILABLE") {
       return <div>
         <Alert variant="success">
-          <Slide right>
+          <div>
             <Container>
               <Alert variant="info">
                 <h1>The domain is not available, But there are other suggestions</h1>
                 <Button variant="primary" onClick={(e) => { setAskSuggestions(true) }}><FontAwesomeIcon icon={faSearch} size="lg" /> Click here to get them</Button>
               </Alert>
             </Container>
-          </Slide>
+          </div>
         </Alert>
         <Container>
           <div>{askSuggestion ? `${suggest()}` : "Can You Try Another Good Name"}</div>
@@ -146,7 +145,7 @@ const App = () => {
     else if (submitted && error !== "") {
       return <Alert variant="info">
         <Container>
-          <LightSpeed>
+          <div>
             <div className="container-fluid mt-5 mb-5">
               <Row md={2} className="bg-none">
                 <Col span={1} offset={1}>
@@ -165,15 +164,16 @@ const App = () => {
                 </Col>
               </Row>
             </div>
-          </LightSpeed>
+          </div>
         </Container>
       </Alert>
     }
     else {
-      return <Fade in><div className="bg-light pt-5 pb-5"><Container><Alert varinat="secondary">
+      return <div className="bg-light pt-5 pb-5"><Container><Alert varinat="secondary">
         <h4 className="center-align">Am pretty sure you will enjoy working with us</h4>
       </Alert>
-      </Container></div></Fade>
+      </Container>
+      </div>
     }
   }
   useEffect(() => {
@@ -206,11 +206,11 @@ const App = () => {
     if (isAvailable) {
       return <div>
         <Container className="p-md-5 m-sm-2 m-md-5">
-          <LightSpeed bottom>
+          <div>
             <Container>
               <h1>The Domain You have Looked for is {checkResult}</h1>
             </Container>
-          </LightSpeed>
+          </div>
         </Container>
       </div>
     } else {
@@ -544,20 +544,15 @@ const Main = () => {
 ReactDOM.render(<div>
   <Router basename="tchosting">
     <Navigation />
-    <Switch>
-      <Route path="/" exact>
+    <Routes>
+      <Route path="/" element={ <div>
         <Main />
         <Services className="my-5" />
-      </Route>
-    </Switch>
-    <Switch>
-      <Route path="/homepage" exact>
-        <Homepage />
-      </Route>
-      <Route path="/login" exact>
-        <LoginPage domainChecked="machu.com" />
-      </Route>
-    </Switch>
+      </div> } />
+
+      <Route path="/homepage" element={<Homepage /> }  />
+      <Route path="/login" element={<LoginPage domainChecked="machu.com" /> } />
+    </Routes>
     <Footer />
   </Router>
 </div>, document.getElementById('root'))

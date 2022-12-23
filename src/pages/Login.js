@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Form, Button, Tabs, Tab } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Slide } from 'react-reveal'
 import '../index.css'
 
 
@@ -38,7 +37,7 @@ const LoginPage = (props) => {
                     onSelect={(k) => setKey(k)}
                 >
                     <Tab eventKey="login" title="Have An Account">
-                        <Slide left>
+                        
                             <div className="login-form">
                                 <Form.Label>Username</Form.Label>
                                 <Form.Control type="text" className="bg-light" />
@@ -46,10 +45,9 @@ const LoginPage = (props) => {
                                 <Form.Control type="password" className="bg-light" />
                                 <Button variant='outline-dark w-100' className="my-2 fw-b btn-outline-colored" onClick={Authenticate}>Login</Button>
                             </div>
-                        </Slide>
                     </Tab>
                     <Tab eventKey="signup" title="Create A New Account" >
-                        <Slide right>
+                        
                             <div className="login-form">
                                 <Form.Label>First Name</Form.Label>
                                 <Form.Control type="text" bg="light" />
@@ -63,7 +61,7 @@ const LoginPage = (props) => {
                                 <Form.Control type="password" />
                                 <Button variant='outline-dark w-100' className="my-2 fw-b shadow-sm rounded-pill" onClick={CreateAccount}>Create Account</Button>
                             </div>
-                        </Slide>
+                        
                     </Tab>
                 </Tabs>
             </div>
