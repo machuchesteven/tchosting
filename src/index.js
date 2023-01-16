@@ -467,7 +467,7 @@ const Services = () => {
               <div>
                 <h4>{service.name}</h4><hr />
                 <p className="service-description-text">{service.description}</p>
-                <img src={service.image} className="img-fluid" />
+                <img alt="services " src={service.image} className="img-fluid" />
               </div>
             </Col>)}
         </Row>
@@ -541,17 +541,17 @@ const Main = () => {
 
 
 
-ReactDOM.render(<div>
+ReactDOM.render(<div className="">
   <Router basename="tchosting">
     <Navigation />
     <Routes>
-      <Route path="/" element={ <div>
+      <Route path="/" element={<div>
         <Main />
         <Services className="my-5" />
-      </div> } />
+      </div>} />
 
-      <Route path="/homepage" element={<Homepage /> }  />
-      <Route path="/login" element={<LoginPage domainChecked="machu.com" /> } />
+      <Route path="/homepage" element={<Homepage />} />
+      <Route path="/login" element={<LoginPage domainChecked="machu.com" className="h-100" />} />
     </Routes>
     <Footer />
   </Router>
